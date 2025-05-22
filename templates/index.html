@@ -1,0 +1,202 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligent Crop Yield Predictor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script> </head>
+<body>
+    <div class="container">
+        <header class="app-header">
+             <strong>HarvestMax AI</strong>
+            <h1>🌾 Intelligent Crop Yield Predictor  Predicting the Future of Farming </h1>
+        </header>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <main>
+            <section class="form-section">
+                <h2>Enter Cultivation Details</h2>
+                <form id="predictionForm" action="{{ url_for('index') }}" method="post">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="crop">Crop Type</label>
+                            <input list="crop-datalist" id="crop" name="crop" placeholder="e.g., Corn" value="{{ form_data.get('crop', '') }}" required>
+                            {% if known_crops %}
+                            <datalist id="crop-datalist">
+                                {% for c in known_crops %}
+                                <option value="{{ c }}">
+                                {% endfor %}
+                            </datalist>
+                            {% endif %}
+                            <small>Start typing to see suggestions if available.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="state">State/Region</label>
+                            <input list="state-datalist" id="state" name="state" placeholder="e.g., Lagos" value="{{ form_data.get('state', '') }}" required>
+                             {% if known_states %}
+                            <datalist id="state-datalist">
+                                {% for s in known_states %}
+                                <option value="{{ s }}">
+                                {% endfor %}
+                            </datalist>
+                            {% endif %}
+                            <small>Start typing to see suggestions if available.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="area">Farming Area (hectares)</label>
+                            <input type="number" id="area" name="area" min="0" step="0.01" placeholder="e.g., 150.5" value="{{ form_data.get('area', '') }}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="year">Year</label>
+                            <input type="number" id="year" name="year" min="1900" max="2100" step="1" placeholder="e.g., {{ current_year }}" value="{{ form_data.get('year', current_year) }}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="rainfall">Average Annual Rainfall (mm)</label>
+                            <input type="number" id="rainfall" name="rainfall" min="0" step="0.1" placeholder="e.g., 1200.5" value="{{ form_data.get('rainfall', '') }}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="temperature">Average Annual Temperature (°C)</label>
+                            <input type="number" id="temperature" name="temperature" step="0.1" placeholder="e.g., 27.5" value="{{ form_data.get('temperature', '') }}" required>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-predict">Predict Yield <span class="arrow">➔</span></button>
+                    </div>
+                </form>
+            </section>
+
+            {% if prediction %}
+            <section class="results-section">
+                <h2>Prediction Result</h2>
+                <div class="prediction-output">
+                    <p>The estimated crop yield is: <strong>{{ prediction }}</strong> per Hectre.</p>
+                </div>
+            </section>
+            {% endif %}
+        </main>
+
+        {% include 'includes/_footer.html' %}
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligent Crop Yield Predictor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+<body>
+    <div class="container">
+        <header class="app-header">
+            <!-- <strong>HarvestMax AI</strong> -->
+             <strong style="font-size: 2.5rem; color: rgb(243, 245, 243);">HarvestMax AI</strong>
+
+            <h1>🌾 Intelligent Crop Yield Predictor <br> Predicting the Future of Farming </h1>
+        </header>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <main>
+            <section class="form-section">
+                <h2>Enter Cultivation Details</h2>
+                <form id="predictionForm" action="{{ url_for('index') }}" method="post">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="crop">Crop Type</label>
+                            <input list="crop-datalist" id="crop" name="crop" placeholder="e.g., Corn" value="{{ form_data.get('crop', '') }}" required>
+                            {% if known_crops %}
+                            <datalist id="crop-datalist">
+                                {% for c in known_crops %}
+                                <option value="{{ c }}">
+                                {% endfor %}
+                            </datalist>
+                            {% endif %}
+                            <small>Start typing or select from suggestions (if available).</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="state">State/Region</label>
+                            <input list="state-datalist" id="state" name="state" placeholder="e.g., Lagos" value="{{ form_data.get('state', '') }}" required autocomplete="off">
+                             {% if display_states %} {# Use display_states for datalist #}
+                            <datalist id="state-datalist">
+                                {% for s in display_states %}
+                                <option value="{{ s }}">
+                                {% endfor %}
+                            </datalist>
+                            {% endif %}
+                            <small>Select a state to auto-fill climate data.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="area">Farming Area (hectares)</label>
+                            <input type="number" id="area" name="area" min="0" step="0.01" placeholder="e.g., 150.5" value="{{ form_data.get('area', '') }}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="year">Year</label>
+                            <input type="number" id="year" name="year" min="1900" max="2100" step="1" placeholder="e.g., {{ current_year }}" value="{{ form_data.get('year', current_year) }}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="rainfall">Average Annual Rainfall (mm)</label>
+                            <input type="number" id="rainfall" name="rainfall" min="0" step="0.1" placeholder="Auto-filled by state" value="{{ form_data.get('rainfall', '') }}" required>
+                            <small id="rainfall-notification" class="auto-fill-notification"></small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="temperature">Average Annual Temperature (°C)</label>
+                            <input type="number" id="temperature" name="temperature" step="0.1" placeholder="Auto-filled by state" value="{{ form_data.get('temperature', '') }}" required>
+                            <small id="temperature-notification" class="auto-fill-notification"></small>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-predict">Predict Yield <span class="arrow">➔</span></button>
+                    </div>
+                </form>
+            </section>
+
+            {% if prediction %}
+            <section class="results-section">
+                <h2>Prediction Result</h2>
+                <div class="prediction-output">
+                    <p>The estimated crop yield is: <strong>{{ prediction }}</strong> per cultivated Hectre.</p>
+                </div>
+            </section>
+            {% endif %}
+        </main>
+
+        {% include 'includes/_footer.html' %} </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
