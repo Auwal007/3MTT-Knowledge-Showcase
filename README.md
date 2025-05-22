@@ -1,1 +1,0 @@
-# 3MTT-Knowledge-Showcase
