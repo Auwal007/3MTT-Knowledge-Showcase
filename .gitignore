@@ -1034,3 +1034,6 @@ venv/Scripts/python.exe
 venv/Scripts/pythonw.exe
 .ipynb_checkpoints/crop-checkpoint.ipynb
 .ipynb_checkpoints/crop yield-checkpoint.ipynb
+.ipynb_checkpoints/app-checkpoint.py
+data/.ipynb_checkpoints/full_nigeria_crop_yield_data-checkpoint.csv
+data/.ipynb_checkpoints/script-checkpoint.py
