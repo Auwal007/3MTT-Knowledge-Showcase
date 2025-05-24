@@ -1033,3 +1033,4 @@ venv/Scripts/pip3.exe
 venv/Scripts/python.exe
 venv/Scripts/pythonw.exe
 .ipynb_checkpoints/crop-checkpoint.ipynb
+.ipynb_checkpoints/crop yield-checkpoint.ipynb
